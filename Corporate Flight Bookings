@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> corpFlightBookings(vector<vector<int>>& bookings, int n){
+        vector<int> arr(n+1);
+        for(auto &it : bookings){
+            int st = it[0] - 1;
+            int en = it[1] - 1;
+            int val = it[2];
+            arr[st] += val;
+            arr[en+1] -= val;
+        }
+        int sum = 0;
+        for(auto &it : arr){
+            sum += it;
+            it = sum;
+        }
+        arr.pop_back();
+        return arr;
+    }
+};
